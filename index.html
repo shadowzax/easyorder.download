@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#FF5A00">
+    <title>Easy Order - تحميل التطبيق</title>
+    <meta name="description" content="حمّل تطبيق Easy Order - منصة التوصيل الذكية في شرم الشيخ.">
+    <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/nm3h2r.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script>
+        (function () {
+            try {
+                var SUPPORTED = ['ar', 'en', 'ru', 'it'];
+                var lang = localStorage.getItem('easyorder_lang') || 'ar';
+                if (SUPPORTED.indexOf(lang) === -1) lang = 'ar';
+                document.documentElement.setAttribute('lang', lang);
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            } catch (e) { }
+        })();
+    </script>
+
+    <style>
+        :root {
+            --color-primary: #FF5A00;
+            --color-secondary: #FF8C38;
+            --color-accent: #FFB800;
+            --color-background: #F7F9F8;
+            --color-card: #FFFFFF;
+            --color-darker: #F0F4F3;
+            --color-white: #1A1A1A;
+            --color-muted: #717171;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --card-bg: #FFFFFF;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --header-height: 72px;
+            --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--color-background); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #FF8C38; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF5A00; }
+
+        #mainHeader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(247, 249, 248, 0.9);
+            backdrop-filter: saturate(180%) blur(14px);
+            -webkit-backdrop-filter: saturate(180%) blur(14px);
+            z-index: 110;
+            direction: rtl;
+            transition: box-shadow .3s ease, background-color .3s ease;
+        }
+
+        #mainHeader.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 12px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            padding: 4px;
+            border-radius: 14px;
+            transition: background .25s ease;
+        }
+
+        .brand:hover {
+            background: rgba(255, 90, 0, .06);
+        }
+
+        .brand img {
+            height: 52px;
+            width: auto;
+            max-width: 180px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        main {
+            padding-top: var(--header-height);
+        }
+
+        .lang-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 4px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+        }
+
+        .lang-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 12px;
+            border-radius: 40px;
+            border: none;
+            background: transparent;
+            color: var(--color-muted);
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 800;
+            cursor: pointer;
+            line-height: 1;
+            letter-spacing: .3px;
+            transition: background .22s ease, color .22s ease, box-shadow .22s ease, transform .22s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .lang-pill .flag {
+            font-size: 1rem;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .lang-pill:hover {
+            background: rgba(255, 90, 0, .08);
+            color: var(--color-primary);
+        }
+
+        .lang-pill:focus-visible {
+            box-shadow: 0 0 0 3px rgba(255, 90, 0, .25);
+        }
+
+        .lang-pill.active {
+            background: linear-gradient(135deg, #FF5A00, #FF8C38);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(255, 90, 0, .3);
+        }
+
+        .lang-pill.active:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 90, 0, .4);
+        }
+
+        .download-section-minimal {
+            width: 100%;
+            max-width: 760px;
+            padding: 50px 20px 70px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .app-logo {
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: 0 auto 28px;
+            object-fit: contain;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .download-section-minimal h1 {
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: 14px;
+            letter-spacing: -.5px;
+            line-height: 1.3;
+        }
+
+        .download-section-minimal p.subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.9;
+            max-width: 540px;
+            margin: 0 auto 34px;
+            color: var(--color-muted);
+        }
+
+        .download-section-minimal p.subtitle .highlight {
+            color: var(--color-primary);
+            font-weight: 800;
+        }
+
+        .dl-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dl-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 12px 22px;
+            border-radius: 40px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 800;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--color-white);
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+            line-height: 1;
+            min-width: 160px;
+        }
+
+        .dl-btn i {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .dl-btn:hover:not(.locked) {
+            transform: translateY(-2px);
+        }
+
+        .dl-btn.primary {
+            background: linear-gradient(135deg, #FF5A00, #FF8C38);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(255, 90, 0, .3);
+        }
+
+        .dl-btn.primary:hover {
+            box-shadow: 0 14px 28px rgba(255, 90, 0, .42);
+        }
+
+        .dl-btn.apkpure {
+            background: linear-gradient(135deg, #00B14F, #00D463);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 6px 16px rgba(0, 177, 79, .28);
+        }
+
+        .dl-btn.apkpure:hover {
+            box-shadow: 0 14px 28px rgba(0, 177, 79, .4);
+        }
+
+        .dl-btn.locked {
+            background: #F0F0F0;
+            color: #8A8A8A;
+            cursor: not-allowed;
+            border-color: rgba(0, 0, 0, .06);
+            filter: grayscale(1);
+            opacity: .9;
+        }
+
+        .dl-btn.locked:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .dl-btn .dl-lock-ic {
+            font-size: 0.78rem;
+            opacity: .7;
+        }
+
+        @media (max-width: 640px) {
+            :root { --header-height: 64px; }
+            #mainHeader { padding: 0 12px; }
+            .brand img { height: 42px; }
+            .lang-pill {
+                padding: 7px 9px;
+                gap: 3px;
+            }
+            .lang-pill .lang-code {
+                display: none;
+            }
+            .lang-pill .flag {
+                font-size: 1.05rem;
+            }
+            .download-section-minimal {
+                padding: 36px 16px 50px;
+            }
+            .app-logo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 24px;
+            }
+            .dl-btns {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 9px;
+                max-width: 340px;
+                margin: 0 auto;
+            }
+            .dl-btn {
+                padding: 14px 20px;
+                min-width: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .lang-pill { padding: 6px 7px; }
+            .lang-pill .flag { font-size: 0.95rem; }
+            .brand img { height: 38px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="mainHeader">
+        <div class="header-inner">
+            <a href="/" class="brand">
+                <img src="https://i.ibb.co/kVrycRZS/Gemini-Generated-Image-pxp5zlpxp5zlpxp5-removebg-preview.png" alt="Easy Order">
+            </a>
+            <div class="header-actions">
+                <div class="lang-inline" id="langInline">
+                    <button class="lang-pill active" data-lang="ar" type="button" aria-label="العربية">
+                        <span class="flag">🇪🇬</span><span class="lang-code">AR</span>
+                    </button>
+                    <button class="lang-pill" data-lang="en" type="button" aria-label="English">
+                        <span class="flag">🇬🇧</span><span class="lang-code">EN</span>
+                    </button>
+                    <button class="lang-pill" data-lang="ru" type="button" aria-label="Русский">
+                        <span class="flag">🇷🇺</span><span class="lang-code">RU</span>
+                    </button>
+                    <button class="lang-pill" data-lang="it" type="button" aria-label="Italiano">
+                        <span class="flag">🇮🇹</span><span class="lang-code">IT</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="download-section-minimal">
+            <img class="app-logo" src="https://files.catbox.moe/nm3h2r.jpg" alt="Easy Order App">
+            <h1 data-i18n="download.heading">Easy Order</h1>
+            <p class="subtitle" data-i18n-html="download.subtitle">
+                إيزي أوردر <span class="highlight">أسهل في الطلب، أوفر في السعر!</span>
+            </p>
+
+            <div class="dl-btns">
+                <button class="dl-btn locked" type="button" disabled aria-disabled="true">
+                    <i class="lab la-google-play"></i>
+                    <span data-i18n="download.playBtn">Google Play</span>
+                    <i class="las la-lock dl-lock-ic"></i>
+                </button>
+
+                <button class="dl-btn locked" type="button" disabled aria-disabled="true">
+                    <i class="lab la-apple"></i>
+                    <span data-i18n="download.appleBtn">App Store</span>
+                    <i class="las la-lock dl-lock-ic"></i>
+                </button>
+
+                <a href="/downloads/easyorder.apk" download class="dl-btn primary">
+                    <i class="las la-cloud-download-alt"></i>
+                    <span data-i18n="download.directBtn">تحميل مباشر</span>
+                </a>
+
+                <a href="https://apkpure.com/easy-order/com.easyorder.sharmsheikh" target="_blank" rel="noopener noreferrer" class="dl-btn apkpure">
+                    <i class="las la-external-link-alt"></i>
+                    <span data-i18n="download.apkpureBtn">APKPure</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var DEFAULT_LANG = 'ar';
+            var SUPPORTED_LANGS = ['ar', 'en', 'ru', 'it'];
+            var STORAGE_KEY = 'easyorder_lang';
+
+            var TRANSLATIONS = {
+                ar: {
+                    download: {
+                        heading: 'Easy Order',
+                        subtitle: 'إيزي أوردر <span class="highlight">أسهل في الطلب، أوفر في السعر!</span>',
+                        playBtn: 'Google Play',
+                        appleBtn: 'App Store',
+                        directBtn: 'تحميل مباشر',
+                        apkpureBtn: 'APKPure'
+                    }
+                },
+                en: {
+                    download: {
+                        heading: 'Easy Order',
+                        subtitle: 'Easy Order <span class="highlight">easier to order, better in price!</span>',
+                        playBtn: 'Google Play',
+                        appleBtn: 'App Store',
+                        directBtn: 'Direct Download',
+                        apkpureBtn: 'APKPure'
+                    }
+                },
+                ru: {
+                    download: {
+                        heading: 'Easy Order',
+                        subtitle: 'Easy Order <span class="highlight">легче заказать, выгоднее по цене!</span>',
+                        playBtn: 'Google Play',
+                        appleBtn: 'App Store',
+                        directBtn: 'Прямая загрузка',
+                        apkpureBtn: 'APKPure'
+                    }
+                },
+                it: {
+                    download: {
+                        heading: 'Easy Order',
+                        subtitle: 'Easy Order <span class="highlight">più facile ordinare, più conveniente nel prezzo!</span>',
+                        playBtn: 'Google Play',
+                        appleBtn: 'App Store',
+                        directBtn: 'Download Diretto',
+                        apkpureBtn: 'APKPure'
+                    }
+                }
+            };
+
+            function getStoredLang() {
+                try {
+                    var saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved && SUPPORTED_LANGS.indexOf(saved) !== -1) return saved;
+                } catch (e) { }
+                return DEFAULT_LANG;
+            }
+
+            function storeLang(lang) {
+                try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { }
+            }
+
+            function getNestedValue(obj, path) {
+                if (!obj || !path) return undefined;
+                var parts = path.split('.');
+                var current = obj;
+                for (var i = 0; i < parts.length; i++) {
+                    if (current == null || typeof current !== 'object') return undefined;
+                    current = current[parts[i]];
+                }
+                return current;
+            }
+
+            function applyTranslations(lang) {
+                var translations = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
+                document.querySelectorAll('[data-i18n]').forEach(function (el) {
+                    var key = el.getAttribute('data-i18n');
+                    var value = getNestedValue(translations, key);
+                    if (value !== undefined && value !== null) {
+                        el.textContent = value;
+                    }
+                });
+                document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+                    var key = el.getAttribute('data-i18n-html');
+                    var value = getNestedValue(translations, key);
+                    if (value !== undefined && value !== null) {
+                        el.innerHTML = value;
+                    }
+                });
+            }
+
+            function updateLangPills(lang) {
+                document.querySelectorAll('.lang-pill').forEach(function (pill) {
+                    pill.classList.toggle('active', pill.getAttribute('data-lang') === lang);
+                });
+            }
+
+            function setDocumentLanguage(lang) {
+                document.documentElement.setAttribute('lang', lang);
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            }
+
+            function switchLanguage(lang) {
+                if (SUPPORTED_LANGS.indexOf(lang) === -1) lang = DEFAULT_LANG;
+                setDocumentLanguage(lang);
+                storeLang(lang);
+                applyTranslations(lang);
+                updateLangPills(lang);
+            }
+
+            document.querySelectorAll('.lang-pill').forEach(function (pill) {
+                pill.addEventListener('click', function () {
+                    var lang = pill.getAttribute('data-lang');
+                    if (SUPPORTED_LANGS.indexOf(lang) === -1) return;
+                    switchLanguage(lang);
+                });
+            });
+
+            var header = document.getElementById('mainHeader');
+            function onScroll() {
+                if (!header) return;
+                header.classList.toggle('scrolled', window.scrollY > 8);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            switchLanguage(getStoredLang());
+        })();
+    </script>
+</body>
+</html>
