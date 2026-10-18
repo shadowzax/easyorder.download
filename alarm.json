@@ -8,8 +8,8 @@
         "id": "alarm_1",
         "name": "تنبيه الأوردر الأول",
         "enabled": true,
-        "time": "12:30",
-        "period": "AM",
+        "time": "12:40",
+        "period": "PM",
         "repeat": true
       },
       {
