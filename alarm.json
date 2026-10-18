@@ -1,0 +1,36 @@
+{
+  "alarmSettings": {
+    "enabled": true,
+    "allAlarmsDisabled": false,
+    "timeFormat": "12h",
+    "alarms": [
+      {
+        "id": "alarm_1",
+        "name": "تنبيه الأوردر الأول",
+        "enabled": true,
+        "time": "12:30",
+        "period": "AM",
+        "repeat": true
+      },
+      {
+        "id": "alarm_2",
+        "name": "تنبيه الأوردر الثاني",
+        "enabled": true,
+        "time": "01:30",
+        "period": "PM",
+        "repeat": true
+      },
+      {
+        "id": "alarm_3",
+        "name": "تنبيه الأوردر الثالث",
+        "enabled": false,
+        "time": "06:00",
+        "period": "PM",
+        "repeat": false
+      }
+    ],
+    "testMode": true,
+    "ringDurationSeconds": 30,
+    "stopOnInteraction": true
+  }
+}
